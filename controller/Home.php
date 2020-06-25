@@ -28,7 +28,7 @@ class Home{
 
     }
 
-     public function showlisterEtudiant($params){
+     public function showlisterEtudiant(){
 
       $manager = new Manager();
       $etudiantes = $manager->findAll('etudiant');
@@ -43,7 +43,7 @@ class Home{
        include(VUE.'addChambre.php');
     }
 
-    public function showlisterChambre($params){
+    public function showlisterChambre(){
         $manager = new Manager();
       $chambres = $manager->findAllChambre();
 
@@ -66,7 +66,7 @@ class Home{
        $_SESSION['id']=$id;
         include(VUE.'modifierChambre.php');
      }
-      public function showvalidereditChambre($params){
+      public function showvalidereditChambre(){
         $manager = new Manager();
       $chambres = $manager->editChambre($_POST);
 
@@ -77,7 +77,9 @@ class Home{
 
 // fonction pour delete
     public function deleteChambre($params){
+
       extract($params);
+
       $manager = new Manager();
        $chambres = $manager->delete($id);
        $myVue = new Vue();

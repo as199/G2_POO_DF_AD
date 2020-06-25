@@ -1,5 +1,5 @@
 <div class="container">
-        <form method="post" action="<?= BASE_URL ?>/validereditChambre" id="addsimples" enctype="multipart/form-data" class="bg-light mt-4">
+        <form method="post" action="<?= BASE_URL ?>/editerChambre" id="addsimples" enctype="multipart/form-data" class="bg-light mt-4">
                     <div class="form-row">
 
                         <div class="col-md-6">

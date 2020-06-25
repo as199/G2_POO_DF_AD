@@ -66,11 +66,12 @@ public function __construct()
 
     //ajouter chambre
     public function addChambre($data){
+
         if(!empty($data)){
         $bdd = $this->bdd;
         $numero =$data['numero'];
         $type =$data['types'];
-         $query = "INSERT INTO `chambre`(`numChambre`, `type`) VALUES ($numero,$type)";
+         $query = "INSERT INTO `chambre`(`numChambre`, `type`)  VALUES ($numero,$type)";
 
         $req =$bdd->prepare($query);
         $req->execute();
@@ -85,10 +86,10 @@ public function __construct()
         $bdd = $this->bdd;
         $numero =$data['numero'];
         $type =$data['types'];
-         $query = "UPDATE `chambre` SET `type`=:type WHERE  `numChambre` = :numero";
+         $query = "UPDATE `chambre` SET `type`=:types WHERE  `numChambre` = :numero";
 
         $req =$bdd->prepare($query);
-        $req->execute(["type"=>$type,"numero"=>$numero]);
+        $req->execute(["types"=>$type,"numero"=>$numero]);
         $count = $req->rowCount();
 
 
@@ -163,18 +164,18 @@ public function __construct()
           $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'adresse'=>$adresse,'dateNaissance'=>$naissance,'type'=>$types,'montant'=>$montant,'telephone'=>$telephone,'numChambre'=>$numchambre]);
             $count = $req->rowCount();
           }
-          echo $matricule;
-          echo "<pre>";
+        //   echo $matricule;
+        //   echo "<pre>";
 
-          var_dump($data);
-
-
+        //   var_dump($data);
 
 
-         if($count==1){
-            echo "collllllll";exit;
-         }
-         exit;
+
+
+        //  if($count==1){
+        //     echo "collllllll";exit;
+        //  }
+        //  exit;
       }
     }
 
