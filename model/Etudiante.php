@@ -6,13 +6,13 @@ private $matricule;
 private $prenom;
 private $nom;
 private $email;
-// private $telephoe;
-// private $type;
-// private $dateNaissance;
-// private $montant;
-// private $adresse;
-// private $numChambre;
-private $bdd;
+ private $telephone;
+ private $type;
+ private $dateNaissance;
+ private $montant;
+ private $adresse;
+ private $numChambre;
+
     /**
      * @return mixed
      */
@@ -80,17 +80,17 @@ private $bdd;
     /**
      * @return mixed
      */
-    public function getTelephoe()
+    public function getTelephone()
     {
-        return $this->telephoe;
+        return $this->telephone;
     }
 
     /**
      * @param mixed $telephoe
      */
-    public function setTelephoe($telephoe)
+    public function setTelephone($telephone)
     {
-        $this->telephoe = $telephoe;
+        $this->telephoe = $telephone;
     }
 
     /**

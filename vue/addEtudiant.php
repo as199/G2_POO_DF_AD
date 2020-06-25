@@ -90,7 +90,7 @@
                      divInputs.appendChild(newInput);
                     }
                     if (contenu == "boursierNonLoger") {
-                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="email" name="email" type="text" placeholder="Entrer le montant" /></div></div>';
+                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div>';
 
                 divInputs.appendChild(newInput);
                  }

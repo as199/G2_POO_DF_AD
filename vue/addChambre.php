@@ -24,4 +24,4 @@
         <input class="btn btn-primary ml-5 " id="btnval" name="" type="submit">
     </form>
 </div>
-<script src="../ressources/js/question.js"></script>
+
