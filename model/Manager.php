@@ -23,6 +23,7 @@ public function __construct()
             $etudiante->setEmail($row['email']);
             $etudiante->setType($row['type']);
             $etudiante->setMontant($row['montant']);
+           $etudiante->setTelephone($row['telephone']);
             $etudiante->setNumChambre($row['numChambre']);
             $etudiante->setAdresse($row['adresse']);
             $etudiante->setDateNaissance($row['dateNaissance']);
@@ -135,21 +136,21 @@ public function __construct()
             $montant =$data['montant'];
             $numchambre =$data['numchambre'];
 
-             $query = "INSERT INTO etudiant(matricule,nom, prenom, email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone,:numChambre)";
+             $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone,:numChambre)";
 
             $req = $bdd->prepare($query);
 
-          $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'dateNaissance'=>$naissance,'type'=>$types,'montant'=>$montant,'telephone'=>$telephone,'numChambre'=>$numchambre]);
+          $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom, 'email' => $email, 'dateNaissance' => $naissance, 'type' => $types, 'montant' => $montant, 'telephone' =>$telephone,'numChambre'=>$numchambre]);
 
             $count = $req->rowCount();
 
           }elseif($types=='boursierNonLoger'){
             $montant =$data['montant'];
-             $query = "INSERT INTO etudiant(matricule,nom, prenom, email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone)";
+        $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone)";
 
-            $req = $bdd->prepare($query);
+        $req = $bdd->prepare($query);
 
-          $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'dateNaissance'=>$naissance,'type'=>$types,'montant'=>$montant,'telephone'=>$telephone]);
+        $req->execute(['matricule' => $matricule, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'dateNaissance' => $naissance, 'type' => $types, 'montant' => $montant, 'telephone' => $telephone]);
         $count = $req->rowCount();
           }
           else{
@@ -157,11 +158,11 @@ public function __construct()
              $numchambre ='neant';
              $montant =0;
 
-             $query = "INSERT INTO etudiant(matricule,nom, prenom, email,adresse, dateNaissance, type,telephone) VALUES (:matricule,:nom,:prenom,:email,:adresse,:dateNaissance,:type,:telephone)";
+        $query = "INSERT INTO etudiant(matricule,nom, prenom,email,adresse, dateNaissance, type, montant, telephone) VALUES (:matricule,:nom,:prenom,:email,:adresse,:dateNaissance,:type,:telephone)";
 
-            $req = $bdd->prepare($query);
+        $req = $bdd->prepare($query);
 
-          $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom,'email'=>$email,'adresse'=>$adresse,'dateNaissance'=>$naissance,'type'=>$types,'montant'=>$montant,'telephone'=>$telephone,'numChambre'=>$numchambre]);
+        $req->execute(['matricule' => $matricule, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'adresse'=>$adresse,'dateNaissance' => $naissance, 'type' => $types, 'telephone' => $telephone]);
             $count = $req->rowCount();
           }
         //   echo $matricule;

@@ -1,3 +1,4 @@
+<?php $tab = array('bonjour', 'bonsoir', 'nuit'); ?>
 <!doctype html>
 <html lang="en">
 
@@ -53,51 +54,49 @@
                     <div class="col-md-6">
                         <label class="small mb-1" for="type">Type Etudiant</label>
                         <select class="form-control col-md-12" id="typ" name="types" type="text" placeholder="Enter your login" style="height: 50px;">
-                                <option value="">--Please choose The Type--</option>
-                                <option value="boursierLoger">Bousier loger </option>
-                                <option value="boursierNonLoger">Boursier non loger </option>
-                                <option value="nonBoursier">Non boursier</option>
-                            </select>
-                     </div>
+                            <option value="">--Please choose The Type--</option>
+                            <option value="boursierLoger">Bousier loger </option>
+                            <option value="boursierNonLoger">Boursier non loger </option>
+                            <option value="nonBoursier">Non boursier</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-row" id="divhaut">
                     <!-- <div class="hautgener form-row col-md-12" id="hautgener">
 
                     </div> -->
                 </div>
-                 <!-- #^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$# -->
+                <!-- #^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$# -->
                 <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" name="envoie" id="select"></div>
             </form>
         </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        $("#typ").change(function () {
+        $("#typ").change(function() {
             var divInputs = document.getElementById('divhaut');
             var newInput = document.getElementById('divhaut');
             var contenu = $("#typ").val();
-                 if (contenu =="boursierLoger") {
+            if (contenu == "boursierLoger") {
 
-                         newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label><input class="form-control py-4" id="numchambre" name="numchambre" type="text" placeholder="Entrer le numéro de chambre" /></div> </div>';
-                         divInputs.appendChild(newInput);
+            newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for($i=0;$i<count($tab);$i++):?> <option value = "<?php echo $tab[$i] ;?>" > <?php echo $tab[$i];?><?php endfor;?>  </select></div >';
+                divInputs.appendChild(newInput);
 
-                 }
-                    if (contenu == "nonBoursier") {
-                    newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="address">Adresse</label><input class="form-control py-4" id="adress" name="adresse" type="text" placeholder="Enter  your address" /></div></div>';
-                     divInputs.appendChild(newInput);
-                    }
-                    if (contenu == "boursierNonLoger") {
+            }
+            if (contenu == "nonBoursier") {
+                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="address">Adresse</label><input class="form-control py-4" id="adress" name="adresse" type="text" placeholder="Enter  your address" /></div></div>';
+                divInputs.appendChild(newInput);
+            }
+            if (contenu == "boursierNonLoger") {
                 newInput.innerHTML = '<div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div>';
 
                 divInputs.appendChild(newInput);
-                 }
+            }
 
-                });
-
-
+        });
     </script>
 </body>
 
