@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>lister</title>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-</head>
-<body>
+
 
 <table class="table table-striped table-sm table-bordered" id="myTable">
                     <thead>
@@ -26,14 +20,14 @@
 <?php foreach ($etudiantes as $value): ?>
             <tr class="text-center text-secondary">
 
-                    <td> <?php echo $value['matricule'] ; ?> </td>
-                    <td> <?php echo $value['prenom'];?></td>
-                    <td> <?php echo $value['nom'] ; ?></td>
-                    <td> <?php echo $value['email'];?></td>
-                    <td> <?php echo $value['type'] ; ?></td>
-                     <td> <?php echo $value['telephone'] ; ?></td>
-                     <td> <?php echo $value['dateNaissance'] ; ?></td>
-                     <td> <?php echo $value['adresse'] ; ?></td>
+                    <td> <?php echo $value->getMatricule() ; ?> </td>
+                    <td> <?php echo $value->getPrenom();?></td>
+                    <td> <?php echo $value->getNom(); ?></td>
+                    <td> <?php echo $value->getEmail();?></td>
+                    <td> <?php echo $value->getType(); ?></td>
+                     <td> <?php echo $value->getTelephone() ; ?></td>
+                     <td> <?php echo $value->getDateNaissance(); ?></td>
+                     <td> <?php echo $value->getAdresse(); ?></td>
 
                      </tr>
 <?php endforeach; ?>
@@ -47,8 +41,7 @@
 } );
 </script>
 
-</body>
-</html>
+
 
 
 

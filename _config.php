@@ -13,8 +13,10 @@ public static function start(){
   $root = $_SERVER['DOCUMENT_ROOT'];
   $host = $_SERVER['HTTP_HOST'];
 
+  define('HOST','http://'.$host.'/mvc1/');
   define('ROOT',$root.'/mvc1');
-  define('HOST','http://'.$host.'/mvc1');
+
+ // echo HOST;exit;
   define('CONTROLLER',ROOT.'/controller/');
   define('MODEL',ROOT.'/model/');
   define('VUE',ROOT.'/vue/');
@@ -26,15 +28,15 @@ public static function start(){
 public static function autoload($class)
 {
 
-    if(file_exists(CONTROLLER.$class.'.php'))
+    if(file_exists(MODEL.$class.'.php'))
     {
-      include_once(CONTROLLER.$class.'.php');
+      include_once(MODEL.$class.'.php');
     }
-    // elseif (MODEL.$class.'.php') {
-    //    include_once(MODEL.$class.'.php');
-    //  }
-    elseif (CLASSES.$class.'.php') {
-      include_once(CLASSES.$class.'.php');
+    else if (file_exists(CLASSES.$class.'.php')) {
+     include_once(CLASSES.$class.'.php');
+     }
+    else if (file_exists(CONTROLLER.$class.'.php')) {
+      include_once(CONTROLLER.$class.'.php');
     }
 }
 
