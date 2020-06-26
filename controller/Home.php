@@ -4,8 +4,8 @@
 class Home{
 
     public function showHome($params){
-
-
+     
+      // var_dump($_SESSION['tab']);exit;
       include VUE.'home.php';
 
     }
@@ -13,7 +13,8 @@ class Home{
 
 
     public function showaddEtudiant($params){
-
+      $manager = new Manager();
+      $_SESSION['tab'] = $manager->findNumchamp();
     include(VUE.'addEtudiant.php');
     }
 
@@ -77,13 +78,13 @@ class Home{
 
 // fonction pour delete
     public function deleteChambre($params){
-
-      extract($params);
-
+    
+      // extract($params);
+      // echo $id;exit;
       $manager = new Manager();
        $chambres = $manager->delete($id);
-       $myVue = new Vue();
-       $myVue->redirect('listerChambre');
+      //  $myVue = new Vue();
+      //  $myVue->redirect('listerChambre');
     }
 
 

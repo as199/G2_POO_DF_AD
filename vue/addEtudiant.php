@@ -1,4 +1,6 @@
-<?php $tab = array('bonjour', 'bonsoir', 'nuit'); ?>
+<?php 
+$tab= $_SESSION['tab'];
+ ?>
 <!doctype html>
 <html lang="en">
 
@@ -15,6 +17,7 @@
 <body>
     <div class="container">
         <div class="card-body">
+        <h1 class="text-danger text-center" style="font-size: 20px;">Enregistrer Etudiant</h1>
             <form method="post" action="" id="form-inscription" enctype="multipart/form-data" class=" bg-light">
                 <div class="form-row">
 
@@ -57,7 +60,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1" for="type">Type Etudiant</label>
-                        <select class="form-control col-md-12" id="typ" name="types" type="text" placeholder="Enter your login" style="height: 50px;">
+                        <select class="form-control col-md-12" id="typ" name="types" type="text" style="height: 50px;">
                             <option value="">--Please choose The Type--</option>
                             <option value="boursierLoger">Bousier loger </option>
                             <option value="boursierNonLoger">Boursier non loger </option>
@@ -87,7 +90,7 @@
             var contenu = $("#typ").val();
             if (contenu == "boursierLoger") {
 
-                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for ($i = 0; $i < count($tab); $i++) : ?> <option value = "<?php echo $tab[$i]; ?>" > <?php echo $tab[$i]; ?><?php endfor; ?>  </select></div >';
+                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="types" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="demiBourse">20000 </option><option value="bourseEntier">40000</option></select></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for ($i = 0; $i < count($tab); $i++) : ?> <option value = "<?php echo $tab[$i]; ?>" > <?php echo $tab[$i]; ?><?php endfor; ?>  </select></div >';
                 divInputs.appendChild(newInput);
 
             }
@@ -96,7 +99,7 @@
                 divInputs.appendChild(newInput);
             }
             if (contenu == "boursierNonLoger") {
-                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div>';
+                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"<label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="types" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="demiBourse">20000 </option><option value="bourseEntier">40000</option></select></div></div>';
 
                 divInputs.appendChild(newInput);
             }

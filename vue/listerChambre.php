@@ -24,10 +24,54 @@
                      data-target="#editModal" id="<?php echo  $value->getNumChambre() ; ?>">
                      <i class="fas fa-edit fa-lg"></i></a>&nbsp;&nbsp;
 
-                     <a href="<?= BASE_URL ?>/delete/id/<?php echo  $value->getNumChambre() ; ?>"onclick="if(!confirm('Voulez-vous vraiment supprimer ?')) return false;" title="Delete" class="text-danger delBtn" id="<?php echo  $value->getNumChambre() ; ?>">
+                     <a href="#" title="Delete" class="text-danger delBtn" id="<?php echo  $value->getNumChambre() ; ?>">
                      <i class="fas fa-trash-alt fa-lg"></i></a>
                  </td>
                      </tr>
                      <?php endforeach; ?>
 
         </tbody></table>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function(e){
+            
+            $('.delBtn').click(function (e)  {
+               // alert ("coool");
+        e.preventDefault();
+        var tr = $(this).closest('tr');
+        del_id = $(this).attr('id');
+        alert (del_id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "<?= BASE_URL ?>/delete",
+                    type: "POST",
+                    data: {
+                        del_id: del_id
+                    },
+                    success: function (response) {
+                        tr.hide();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'User deleted successfully!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        // $("#editModal").modal('hide');
+                        // $("#editform-data")[0].reset();
+                        // showAllUsers();
+                    }
+                });
+            }
+        });
+    });
+});
+</script>

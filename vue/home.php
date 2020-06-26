@@ -1,6 +1,6 @@
-
-
-
+<?php
+ // var_dump($_SESSION['tab']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 

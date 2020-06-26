@@ -33,6 +33,18 @@ public function __construct()
         return $etudiantes;
 
     }
+    public function findNumchamp(){
+      $bdd = $this->bdd;
+      $query = "SELECT numChambre FROM chambre";
+      $req =$bdd->prepare($query);
+      $req->execute();
+      $result= $req->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($result as  $row) {
+        $data[] = $row['numChambre'];
+
+     }
+      return $data;
+    }
     // lisetre les chambres
     public  function  findAllChambre(){
         $bdd = $this->bdd;
@@ -55,6 +67,8 @@ public function __construct()
     }
 
     public function delete($id){
+      if (isset($_POST['del_id'])) {
+        $id = $_POST['del_id'];
         $bdd = $this->bdd;
 
 
@@ -62,6 +76,14 @@ public function __construct()
         $req =$bdd->prepare($query);
         $req->execute(['id'=>$id]);
         $count = $req->rowCount();
+        if($count == 1){
+          $teste ="faux";
+        }else{
+          $teste = "vrai";
+        }
+        echo json_encode(array('error'=>$teste));exit;
+      }
+       
 
 
     }
@@ -135,12 +157,12 @@ public function __construct()
 
             $bdd = $this->bdd;
             //$matricule =1005;
-        $prenom =$data['prenom'];
-        $nom =$data['nom'];
-        $email =$data['email'];
-        $naissance =$data['naissance'];
-        $telephone =$data['telephone'];
-        $types =$data['types'];
+        $prenom =$_POST['prenom'];
+        $nom =$_POST['nom'];
+        $email =$_POST['email'];
+        $naissance =$_POST['naissance'];
+        $telephone =$_POST['telephone'];
+        $types =$_POST['types'];
           $annee=date("Y");
         $comnom =$this->coupe($nom);
         $derpren = $this->fin($prenom);
@@ -148,8 +170,8 @@ public function __construct()
         $matricule =$annee.$comnom.$derpren.$distict;
 
           if($types=='boursierLoger'){
-            $montant =$data['montant'];
-            $numchambre =$data['numchambre'];
+            $montant =$_POST['montant'];
+            $numchambre =$_POST['numchambre'];
 
              $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone,:numChambre)";
 
@@ -160,7 +182,7 @@ public function __construct()
             $count = $req->rowCount();
 
           }elseif($types=='boursierNonLoger'){
-            $montant =$data['montant'];
+            $montant =$_POST['montant'];
         $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone)";
 
         $req = $bdd->prepare($query);
@@ -169,7 +191,7 @@ public function __construct()
         $count = $req->rowCount();
           }
           else{
-            $adresse =$data['adresse'];
+            $adresse =$_POST['adresse'];
              $numchambre ='neant';
              $montant =0;
 
@@ -189,7 +211,7 @@ public function __construct()
         //   echo $matricule;
         //   echo "<pre>";
 
-        //   var_dump($data);
+        //   var_dump($_POST);
 
 
 

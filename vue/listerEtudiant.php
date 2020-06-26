@@ -12,6 +12,8 @@
                            <th>Telephone</th>
                            <th>DateNaiss</th>
                             <th>Adresse</th>
+                            <th>Montant</th>
+                            <th>Chambre</th>
 
                         </tr>
                     </thead>
@@ -22,12 +24,14 @@
 
                     <td> <?php echo $value->getMatricule() ; ?> </td>
                     <td> <?php echo $value->getPrenom();?></td>
-                    <td> <?php echo $value->getNom(); ?></td>
+                    <td> <?php echo $value->getNom();?></td>
                     <td> <?php echo $value->getEmail();?></td>
-                    <td> <?php echo $value->getType(); ?></td>
-                     <td> <?php echo $value->getTelephone() ; ?></td>
+                    <td> <?php echo $value->getType();?></td>
+                     <td> <?php echo $value->getTelephone() ;?></td>
                      <td> <?php echo $value->getDateNaissance(); ?></td>
                      <td> <?php echo $value->getAdresse(); ?></td>
+                     <td> <?php echo $value->getMontant(); ?></td>
+                     <td> <?php echo $value->getnumChambre(); ?></td>
 
                      </tr>
 <?php endforeach; ?>
