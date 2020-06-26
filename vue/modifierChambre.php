@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="" id="addsimples" enctype="multipart/form-data" class="bg-light mt-4">
+    <form method="post" action="" id="form-edit" enctype="multipart/form-data" class="bg-light mt-4">
         <div class="form-row">
 
             <div class="col-md-6">
@@ -28,40 +28,40 @@
 </div>
 <script>
     $(document).ready(function() {
-        $("#inscrire").click(function(e) {//tu change l'id du bouton
+        $("#btnval").click(function(e) { //tu change l'id du bouton
             e.preventDefault();
 
             $.ajax({
                 url: '<?= BASE_URL ?>/editerChambre',
                 type: 'POST',
                 type: "POST",
-                data: $('#form-inscription').serialize() + "&action=modifierChambre", //change l'ic du formulaire
+                data: $('#form-edit').serialize() + "&action=modifierChambre", //change l'ic du formulaire
                 success: function(response) {
                     console.log(response);
-                //     data = JSON.parse(response);
-                //     console.log(data);
-                //     if (data.error == "vrai") {
-                //         Swal.fire({
-                //             icon: 'error',
-                //             title: 'Oops...',
-                //             text: "Echec le l'inscription!"
-                //         })
-                //         $("form").trigger("reset");
-                //     } else {
-                //         Swal.fire({
-                //             icon: 'success',
-                //             title: 'Bravo...',
-                //             text: 'Inscription Validé!',
-                //             showConfirmButton: false,
-                //             timer: 2000
-                //         })
-                //         $("form").trigger("reset");
-                //         // window.location.href = '<?= BASE_URL ?>/addEtudiant';
-                //     }
-                // }
-            }
+                    //     data = JSON.parse(response);
+                    //     console.log(data);
+                    //     if (data.error == "vrai") {
+                    //         Swal.fire({
+                    //             icon: 'error',
+                    //             title: 'Oops...',
+                    //             text: "Echec le l'inscription!"
+                    //         })
+                    //         $("form").trigger("reset");
+                    //     } else {
+                    //         Swal.fire({
+                    //             icon: 'success',
+                    //             title: 'Bravo...',
+                    //             text: 'Inscription Validé!',
+                    //             showConfirmButton: false,
+                    //             timer: 2000
+                    //         })
+                    //         $("form").trigger("reset");
+                    //         // window.location.href = '<?= BASE_URL ?>/addEtudiant';
+                    //     }
+                    // }
+                }
 
-        })
-    });
+            })
+        });
     });
 </script>
