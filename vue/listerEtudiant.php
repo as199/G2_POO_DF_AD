@@ -1,9 +1,9 @@
 
 
-<table class="table table-striped table-sm table-bordered" id="myTable">
+<table class="table table-striped table-sm table-bordered  text-dark bg-light" id="myTable" style="font-size: 15px;">
                     <thead>
                         <!-- entete de la table -->
-                        <tr class="text-center">
+                        <tr class="text-center  text-light text-secondary bg-danger">
                             <th>Matricule</th>
                             <th>Prénom</th>
                             <th>Nom</th>
@@ -34,13 +34,11 @@
         </tbody></table>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-<script type="text/javascript">
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
-
+    <script type="text/javascript">
+        $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+    </script>
 
 
 

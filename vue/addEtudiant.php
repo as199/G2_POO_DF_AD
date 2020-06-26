@@ -15,19 +15,21 @@
 <body>
     <div class="container">
         <div class="card-body">
-            <form method="post" action="<?= BASE_URL ?>/validerEtudiant" id="addsimples" enctype="multipart/form-data" class=" bg-light">
+            <form method="post" action="<?= BASE_URL ?>/validerEtudiant" id="form-inscription" enctype="multipart/form-data" class=" bg-light">
                 <div class="form-row">
 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="small mb-1" for="inputFirstName">Prenom</label>
                             <input class="form-control py-4" id="prenom" name="prenom" type="text" placeholder="Enter first name" pattern="[A-Za-z]+" />
+                            <small id="error1" style="color: red;"></small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="small mb-1" for="inputLastName">Nom</label>
                             <input class="form-control py-4" id="nom" name="nom" type="text" placeholder="Enter last name" pattern="[A-Za-z]+" />
+                            <small id="error2" style="color: red;"></small>
                         </div>
                     </div>
                 </div>
@@ -36,20 +38,22 @@
                         <div class="form-group">
                             <label class="small mb-1" for="inputEmailAddress">Email</label>
                             <input class="form-control py-4" id="email" name="email" type="email" placeholder="Enter email address" />
-
-
-
+                            <small id="error3" style="color: red;"></small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="small mb-1" for="inputlogin">Date Naissane</label><input class="form-control py-4" id="naissance" name="naissance" type="date" placeholder="Enter your naissance" />
+                            <small id="error4" style="color: red;"></small>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6">
-                        <div class="form-group"><label class="small mb-1" for="inputPassword">Telephone</label><input class="form-control py-4" id="telephone" type="texte" name="telephone" placeholder="Enter password" /></div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPassword">Telephone</label><input class="form-control py-4" id="telephone" type="texte" name="telephone" placeholder="Enter your phone number" />
+                            <small id="error5" style="color: red;"></small>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label class="small mb-1" for="type">Type Etudiant</label>
@@ -59,6 +63,7 @@
                             <option value="boursierNonLoger">Boursier non loger </option>
                             <option value="nonBoursier">Non boursier</option>
                         </select>
+                        <small id="error6" style="color: red;"></small>
                     </div>
                 </div>
                 <div class="form-row" id="divhaut">
@@ -67,7 +72,7 @@
                     </div> -->
                 </div>
                 <!-- #^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$# -->
-                <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" name="envoie" id="select"></div>
+                <div class="form-group mt-4 mb-0"><input type="submit" class="btn btn-primary btn-block" name="envoie" id="inscrire"></div>
             </form>
         </div>
     </div>
@@ -96,6 +101,82 @@
                 divInputs.appendChild(newInput);
             }
 
+        });
+
+        $("#inscrire").click(function(e){
+            e.preventDefault();
+            
+            var form = $('#form-inscription')[0];
+            var bool=false;
+            if($('#prenom').val()==""){
+                    $('#error1').text('Veuillez saisir un prenom!')
+                   bool= true
+                }else{
+                    $('#error1').text('')
+                }
+                if($('#nom').val()==""){
+                    $('#error2').text('Veuillez saisir un nom!')
+                    bool= true
+                }else{
+                    $('#error2').text('')
+                }
+                 if($('#email').val()==""){
+            $('#error3').text('Veuillez saisir un email!')
+            bool= true
+        }else{
+            $('#error3').text('')
+        }
+        if($('#naissance').val()=="" ||$('#pwd2').val()!=$('#pwd').val() ){
+            $('#error4').text('Veuillez saisir une date de naissance!')
+            bool= true
+        }else{
+            $('#error4').text('')
+        }
+        if($('#telephone').val()==""){
+            $('#error5').text('Veuillez saisir un numéro de téléphone!')
+            bool= true
+        }else{
+            $('#error5').text('')
+        }
+        if($('#typ').val()==""){
+            $('#error6').text('Veuillez choisir un type!')
+            bool= true
+        }else{
+            $('#error6').text('')
+        }
+                if(bool==false){
+            $.ajax({
+                url: '../PHP/action.php',  
+                type: 'POST',
+                enctype: "multipart/form-data",
+                cache: false,
+                timeOut: 600000,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    $("form").trigger("reset");
+                     data =JSON.parse(response);
+                    if(data.error=="vrai"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Ce login existe déjà!'
+                        })
+                    }
+                    else{
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Bravo...',
+                            text: 'Inscription Validé!'
+                        })
+                        window.location.href='../model/Manager.php';
+                    }
+                },
+            });
+        }else{
+            alert('Veuillez Saisir tous les champs!')
+        }
+    
         });
     </script>
 </body>

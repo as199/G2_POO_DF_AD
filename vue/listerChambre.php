@@ -1,5 +1,5 @@
 
-       <h1 class="text-danger text-center">lister les etudiants</h1>
+       <h1 class="text-danger text-center">lister les chambres</h1>
 <table class="table table-striped table-sm table-bordered" >
                     <thead>
                         <!-- entete de la table -->
