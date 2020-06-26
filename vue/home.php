@@ -11,7 +11,7 @@
   <meta name="author" content="">
   <title>Sunu site</title>
   <!-- Bootstrap core CSS -->
-  <link href="../ressources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
   <!-- google icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -49,9 +49,7 @@
 
         <input type="hidden" name="logout" value="logout" id="logout">
       </div>
-      <div class="list-group list-group-flush">
-        <a href="../traitement/deconnexion.php" onclick="if(!confirm('Voulez-vous vraiment vous déconnecter ?')) return false;" class="list-group-item list-group-item-action bg-info text-light" value="logout"><i class="fa fa-power-off" style="font-size:24px;color:red"></i>LogOut</a>
-      </div>
+      
     </div>
 
     <!-- Page Content -->
@@ -73,7 +71,7 @@
     <!-- Bootstrap core JavaScript and others CDN Links -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/ nbootstrap.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/ nbootstrap.min.js"></script> -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- mes fonctions js  -->

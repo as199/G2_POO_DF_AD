@@ -56,8 +56,8 @@ class Home{
       $manager = new Manager();
       $chambres = $manager->addChambre($_POST);
 
-      $myVue = new Vue('addChambre');
-       $myVue->render(array('etudiante'=>$chambres));
+     // $myVue = new Vue('addChambre');
+       //$myVue->render(array('etudiante'=>$chambres));
 
 
     }

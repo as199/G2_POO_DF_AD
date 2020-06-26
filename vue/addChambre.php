@@ -11,7 +11,7 @@
   </head>
   <body>
   <div class="container">
-        <form method="post" action="<?= BASE_URL ?>/validerChambre" id="form-chambre" enctype="multipart/form-data" class="bg-light mt-4">
+        <form method="post" action="" id="form-chambre" enctype="multipart/form-data" class="bg-light mt-4">
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group ml-5">
@@ -62,34 +62,34 @@
                 }
                 
                 if(bool==false){
-            $.ajax({
-                url: '../model/Manager.php',  
-                type: 'POST',
-                enctype: "multipart/form-data",
-                cache: false,
-                timeOut: 600000,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    $("form").trigger("reset");
-                     data =JSON.parse(response);
-                    if(data.error=="vrai"){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Ce login existe déjà!'
-                        })
+                $.ajax({
+                    url: '<?= BASE_URL ?>/validerChambre',
+                    type: "POST",
+                    data: $('#form-chambre').serialize() + "&action=ajouterChambre", //change l'ic du formulaire
+                    success: function(response) {
+                    // console.log(response);
+                        data = JSON.parse(response);
+                        console.log(data);
+                        if (data.error == "vrai") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Echec de l'enregistrement!"
+                            })
+                            $("form").trigger("reset");
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bravo...',
+                                text: 'Enregistrer avec success!',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            //$("form").trigger("reset");
+                            // window.location.href = '<?= BASE_URL ?>/addEtudiant';
+                        }
                     }
-                    else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Bravo...',
-                            text: 'Inscription Validé!'
-                        })
-                        window.location.href='../PHP/connexion.php';
-                    }
-                },
-            });
+                });//ajax
         }else{
             alert('Veuillez Saisir tous les champs!')
         }

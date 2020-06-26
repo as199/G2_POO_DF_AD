@@ -69,15 +69,21 @@ public function __construct()
     //ajouter chambre
     public function addChambre($data){
 
-        if(!empty($data)){
+        if(isset($_POST['action']) && $_POST['action']=="ajouterChambre"){
         $bdd = $this->bdd;
-        $numero =$data['numero'];
-        $type =$data['types'];
+        $numero =$_POST['numero'];
+        $type =$_POST['types'];
          $query = "INSERT INTO `chambre`(`numChambre`, `type`)  VALUES ($numero,$type)";
 
         $req =$bdd->prepare($query);
         $req->execute();
-
+        $count = $req->rowCount();
+        if($count == 1){
+          $test ="faux";
+        }else{
+          $test = "vrai";
+        }
+        echo json_encode(array('error'=>$test));exit;
 
 
       }
@@ -85,16 +91,22 @@ public function __construct()
       public function editChambre($data){
 
         if(!empty($_POST["action"]) && $_POST["action"] =="modifierChambre"){
-          var_dump($_POST);exit;
+         
         $bdd = $this->bdd;
-        $numero =$data['numero'];
-        $type =$data['types'];
+        $numero =$_POST['numero'];
+        $type =$_POST['types'];
          $query = "UPDATE `chambre` SET `type`=:types WHERE  `numChambre` = :numero";
 
         $req =$bdd->prepare($query);
         $req->execute(["types"=>$type,"numero"=>$numero]);
         $count = $req->rowCount();
 
+        if($count == 1){
+          $tes ="faux";
+        }else{
+          $tes = "vrai";
+        }
+        echo json_encode(array('error'=>$tes));exit;
 
       }
 
