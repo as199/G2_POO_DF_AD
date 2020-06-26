@@ -86,11 +86,11 @@ private $email;
     }
 
     /**
-     * @param mixed $telephoe
+     * @param mixed $telephone
      */
     public function setTelephone($telephone)
     {
-        $this->telephoe = $telephone;
+        $this->telephone = $telephone;
     }
 
     /**

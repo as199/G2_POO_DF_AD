@@ -29,6 +29,7 @@ public function __construct()
             $etudiante->setDateNaissance($row['dateNaissance']);
             $etudiantes[] = $etudiante; // tableau objet
         };
+
         return $etudiantes;
 
     }
