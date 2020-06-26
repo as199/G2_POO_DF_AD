@@ -23,8 +23,8 @@ class Home{
        $manager = new Manager();
       $etudiants = $manager->addEtudiant($_POST);
 
-      $myVue = new Vue();
-       $myVue->redirect('listerEtudiant');
+      //$myVue = new Vue();
+      // $myVue->redirect('listerEtudiant');
 
     }
 
@@ -70,8 +70,8 @@ class Home{
         $manager = new Manager();
       $chambres = $manager->editChambre($_POST);
 
-      $myVue = new Vue();
-         $myVue->redirect('listerChambre');
+      //$myVue = new Vue();
+       //  $myVue->redirect('listerChambre');
      }
 
 

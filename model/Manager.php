@@ -84,7 +84,8 @@ public function __construct()
   }
       public function editChambre($data){
 
-        if(!empty($data)){
+        if(!empty($_POST["action"]) && $_POST["action"] =="modifierChambre"){
+          var_dump($_POST);exit;
         $bdd = $this->bdd;
         $numero =$data['numero'];
         $type =$data['types'];
@@ -118,7 +119,8 @@ public function __construct()
 
 
     public function addEtudiant($data){
-         if(!empty($data)){
+         if(isset($_POST['action']) && $_POST['action']== "addEtudiant"){
+
             $bdd = $this->bdd;
             //$matricule =1005;
         $prenom =$data['prenom'];
@@ -159,13 +161,19 @@ public function __construct()
              $numchambre ='neant';
              $montant =0;
 
-        $query = "INSERT INTO etudiant(matricule,nom, prenom,email,adresse, dateNaissance, type, montant, telephone) VALUES (:matricule,:nom,:prenom,:email,:adresse,:dateNaissance,:type,:telephone)";
+        $query = "INSERT INTO etudiant(matricule,nom, prenom,email,adresse, dateNaissance, type, telephone) VALUES (:matricule,:nom,:prenom,:email,:adresse,:dateNaissance,:type,:telephone)";
 
         $req = $bdd->prepare($query);
 
         $req->execute(['matricule' => $matricule, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'adresse'=>$adresse,'dateNaissance' => $naissance, 'type' => $types, 'telephone' => $telephone]);
             $count = $req->rowCount();
           }
+          if($count == 1){
+            $t ="faux";
+          }else{
+            $t = "vrai";
+          }
+          echo json_encode(array('error'=>$t));exit;
         //   echo $matricule;
         //   echo "<pre>";
 

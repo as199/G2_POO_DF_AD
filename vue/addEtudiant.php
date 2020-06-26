@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <div class="card-body">
-            <form method="post" action="<?= BASE_URL ?>/validerEtudiant" id="form-inscription" enctype="multipart/form-data" class=" bg-light">
+            <form method="post" action="" id="form-inscription" enctype="multipart/form-data" class=" bg-light">
                 <div class="form-row">
 
                     <div class="col-md-6">
@@ -87,7 +87,7 @@
             var contenu = $("#typ").val();
             if (contenu == "boursierLoger") {
 
-            newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for($i=0;$i<count($tab);$i++):?> <option value = "<?php echo $tab[$i] ;?>" > <?php echo $tab[$i];?><?php endfor;?>  </select></div >';
+                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label><input class="form-control py-4" id="montant" name="montant" type="text" placeholder="Entrer le montant" /></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for ($i = 0; $i < count($tab); $i++) : ?> <option value = "<?php echo $tab[$i]; ?>" > <?php echo $tab[$i]; ?><?php endfor; ?>  </select></div >';
                 divInputs.appendChild(newInput);
 
             }
@@ -103,80 +103,81 @@
 
         });
 
-        $("#inscrire").click(function(e){
+        $("#inscrire").click(function(e) {
             e.preventDefault();
-            
+
             var form = $('#form-inscription')[0];
-            var bool=false;
-            if($('#prenom').val()==""){
-                    $('#error1').text('Veuillez saisir un prenom!')
-                   bool= true
-                }else{
-                    $('#error1').text('')
-                }
-                if($('#nom').val()==""){
-                    $('#error2').text('Veuillez saisir un nom!')
-                    bool= true
-                }else{
-                    $('#error2').text('')
-                }
-                 if($('#email').val()==""){
-            $('#error3').text('Veuillez saisir un email!')
-            bool= true
-        }else{
-            $('#error3').text('')
-        }
-        if($('#naissance').val()=="" ||$('#pwd2').val()!=$('#pwd').val() ){
-            $('#error4').text('Veuillez saisir une date de naissance!')
-            bool= true
-        }else{
-            $('#error4').text('')
-        }
-        if($('#telephone').val()==""){
-            $('#error5').text('Veuillez saisir un numéro de téléphone!')
-            bool= true
-        }else{
-            $('#error5').text('')
-        }
-        if($('#typ').val()==""){
-            $('#error6').text('Veuillez choisir un type!')
-            bool= true
-        }else{
-            $('#error6').text('')
-        }
-                if(bool==false){
-            $.ajax({
-                url: '../PHP/action.php',  
-                type: 'POST',
-                enctype: "multipart/form-data",
-                cache: false,
-                timeOut: 600000,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    $("form").trigger("reset");
-                     data =JSON.parse(response);
-                    if(data.error=="vrai"){
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Ce login existe déjà!'
-                        })
-                    }
-                    else{
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Bravo...',
-                            text: 'Inscription Validé!'
-                        })
-                        window.location.href='../model/Manager.php';
-                    }
-                },
-            });
-        }else{
-            alert('Veuillez Saisir tous les champs!')
-        }
-    
+            var bool = false;
+            if ($('#prenom').val() == "") {
+                $('#error1').text('Veuillez saisir un prenom!')
+                bool = true
+            } else {
+                $('#error1').text('')
+            }
+            if ($('#nom').val() == "") {
+                $('#error2').text('Veuillez saisir un nom!')
+                bool = true
+            } else {
+                $('#error2').text('')
+            }
+            if ($('#email').val() == "") {
+                $('#error3').text('Veuillez saisir un email!')
+                bool = true
+            } else {
+                $('#error3').text('')
+            }
+            if ($('#naissance').val() == "" || $('#pwd2').val() != $('#pwd').val()) {
+                $('#error4').text('Veuillez saisir une date de naissance!')
+                bool = true
+            } else {
+                $('#error4').text('')
+            }
+            if ($('#telephone').val() == "") {
+                $('#error5').text('Veuillez saisir un numéro de téléphone!')
+                bool = true
+            } else {
+                $('#error5').text('')
+            }
+            if ($('#typ').val() == "") {
+                $('#error6').text('Veuillez choisir un type!')
+                bool = true
+            } else {
+                $('#error6').text('')
+            }
+            if (bool == false) {
+                $.ajax({
+                    url: '<?= BASE_URL ?>/validerEtudiant',
+                    type: 'POST',
+                    type: "POST",
+                    data: $('#form-inscription').serialize() + "&action=addEtudiant",
+                    success: function(response) {
+                        //console.log(response);
+                        data = JSON.parse(response);
+                        console.log(data);
+                        if (data.error == "vrai") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Echec le l'inscription!"
+                            })
+                            $("form").trigger("reset");
+                        } else {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Bravo...',
+                                text: 'Inscription Validé!',
+                                showConfirmButton: false,
+                                timer: 2000
+                            })
+                            $("form").trigger("reset");
+                            // window.location.href = '<?= BASE_URL ?>/addEtudiant';
+                        }
+                    },
+                });
+            } else {
+                alert('Veuillez Saisir tous les champs!')
+            }
+
         });
     </script>
 </body>
