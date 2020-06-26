@@ -4,7 +4,7 @@
 class Home{
 
     public function showHome($params){
-     
+
       // var_dump($_SESSION['tab']);exit;
       include VUE.'home.php';
 
@@ -78,11 +78,11 @@ class Home{
 
 // fonction pour delete
     public function deleteChambre($params){
-    
-      // extract($params);
+
+      extract($params);
       // echo $id;exit;
       $manager = new Manager();
-       $chambres = $manager->delete($id);
+       $chambres = $manager->delete();
       //  $myVue = new Vue();
       //  $myVue->redirect('listerChambre');
     }

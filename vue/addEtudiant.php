@@ -1,6 +1,6 @@
-<?php 
-$tab= $_SESSION['tab'];
- ?>
+<?php
+$tab = $_SESSION['tab'];
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +17,7 @@ $tab= $_SESSION['tab'];
 <body>
     <div class="container">
         <div class="card-body">
-        <h1 class="text-danger text-center" style="font-size: 20px;">Enregistrer Etudiant</h1>
+            <h1 class="text-danger text-center" style="font-size: 20px;">Enregistrer Etudiant</h1>
             <form method="post" action="" id="form-inscription" enctype="multipart/form-data" class=" bg-light">
                 <div class="form-row">
 
@@ -90,7 +90,7 @@ $tab= $_SESSION['tab'];
             var contenu = $("#typ").val();
             if (contenu == "boursierLoger") {
 
-                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="types" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="demiBourse">20000 </option><option value="bourseEntier">40000</option></select></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;"> <ption value = "" >Please choose The Type-- < /option> <?php for ($i = 0; $i < count($tab); $i++) : ?> <option value = "<?php echo $tab[$i]; ?>" > <?php echo $tab[$i]; ?><?php endfor; ?>  </select></div >';
+                newInput.innerHTML = ' <div class="col-md-6"><div class="form-group"><label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="montant" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="20000">20000 </option><option value="40000">40000</option></select></div></div><div class="col-md-6"><div class="form-group"><label class="small mb-1" for="numchambrre">Numéro chambre</label> <select class="form-control col-md-12" id="typ" name="numchambre" type="text" placeholder="Enter your login" style="height: 50px;">  <?php for ($i = 0; $i < count($tab); $i++) : ?> <option value = "<?php echo $tab[$i]; ?>" > <?php echo $tab[$i]; ?><?php endfor; ?>  </select></div >';
                 divInputs.appendChild(newInput);
 
             }
@@ -99,7 +99,7 @@ $tab= $_SESSION['tab'];
                 divInputs.appendChild(newInput);
             }
             if (contenu == "boursierNonLoger") {
-                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"<label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="types" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="demiBourse">20000 </option><option value="bourseEntier">40000</option></select></div></div>';
+                newInput.innerHTML = '<div class="col-md-6"><div class="form-group"<label class="small mb-1" for="montant">Montant</label> <select class="form-control col-md-12" id="typ" name="montant" type="text" style="height: 50px;"><option value="">--Choisir un montant--</option><option value="20000">20000 </option><option value="40000">40000</option></select></div></div>';
 
                 divInputs.appendChild(newInput);
             }
@@ -154,28 +154,28 @@ $tab= $_SESSION['tab'];
                     type: "POST",
                     data: $('#form-inscription').serialize() + "&action=addEtudiant",
                     success: function(response) {
-                        //console.log(response);
                         data = JSON.parse(response);
                         console.log(data);
                         if (data.error == "vrai") {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
-                                text: "Echec le l'inscription!"
+                                text: 'Insertion failed!'
+
                             })
-                            $("form").trigger("reset");
                         } else {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Bravo...',
-                                text: 'Inscription Validé!',
-                                showConfirmButton: false,
-                                timer: 2000
+                                title: 'Good...',
+                                text: 'Student added successfully!'
+
                             })
-                            $("form").trigger("reset");
-                            // window.location.href = '<?= BASE_URL ?>/addEtudiant';
+
+                            $("#form-inscription")[0].reset();
                         }
-                    },
+
+
+                    }
                 });
             } else {
                 alert('Veuillez Saisir tous les champs!')
@@ -184,5 +184,6 @@ $tab= $_SESSION['tab'];
         });
     </script>
 </body>
+
 
 </html>

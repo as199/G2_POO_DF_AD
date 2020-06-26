@@ -31,7 +31,7 @@
                      <td> <?php echo $value->getDateNaissance(); ?></td>
                      <td> <?php echo $value->getAdresse(); ?></td>
                      <td> <?php echo $value->getMontant(); ?></td>
-                     <td> <?php echo $value->getnumChambre(); ?></td>
+                     <td> <?php echo $value->getNumChambre(); ?></td>
 
                      </tr>
 <?php endforeach; ?>

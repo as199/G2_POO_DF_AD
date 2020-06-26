@@ -66,7 +66,7 @@ public function __construct()
 
     }
 
-    public function delete($id){
+    public function delete(){
       if (isset($_POST['del_id'])) {
         $id = $_POST['del_id'];
         $bdd = $this->bdd;
@@ -83,7 +83,7 @@ public function __construct()
         }
         echo json_encode(array('error'=>$teste));exit;
       }
-       
+
 
 
     }
@@ -113,7 +113,7 @@ public function __construct()
       public function editChambre($data){
 
         if(!empty($_POST["action"]) && $_POST["action"] =="modifierChambre"){
-         
+
         $bdd = $this->bdd;
         $numero =$_POST['numero'];
         $type =$_POST['types'];
@@ -154,7 +154,7 @@ public function __construct()
 
     public function addEtudiant($data){
          if(isset($_POST['action']) && $_POST['action']== "addEtudiant"){
-
+          //var_dump($_POST);exit;
             $bdd = $this->bdd;
             //$matricule =1005;
         $prenom =$_POST['prenom'];
@@ -169,19 +169,19 @@ public function __construct()
         $distict = date("is") ;
         $matricule =$annee.$comnom.$derpren.$distict;
 
-          if($types=='boursierLoger'){
+          if($types== 'boursierLoger'){
             $montant =$_POST['montant'];
             $numchambre =$_POST['numchambre'];
 
-             $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone,:numChambre)";
+        $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone,numChambre) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone,:numChambre)";
 
-            $req = $bdd->prepare($query);
+        $req = $bdd->prepare($query);
 
-          $req->execute(['matricule'=>$matricule,'nom'=>$nom,'prenom'=>$prenom, 'email' => $email, 'dateNaissance' => $naissance, 'type' => $types, 'montant' => $montant, 'telephone' =>$telephone,'numChambre'=>$numchambre]);
+        $req->execute(['matricule' => $matricule, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'dateNaissance' => $naissance, 'type' => $types, 'montant' => $montant, 'telephone' =>$telephone, 'numChambre'=>$numchambre]);
+        $count = $req->rowCount();
 
-            $count = $req->rowCount();
-
-          }elseif($types=='boursierNonLoger'){
+          }
+          elseif($types=='boursierNonLoger'){
             $montant =$_POST['montant'];
         $query = "INSERT INTO etudiant(matricule,nom, prenom,email, dateNaissance, type, montant, telephone) VALUES (:matricule,:nom,:prenom,:email,:dateNaissance,:type,:montant,:telephone)";
 
@@ -190,7 +190,8 @@ public function __construct()
         $req->execute(['matricule' => $matricule, 'nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'dateNaissance' => $naissance, 'type' => $types, 'montant' => $montant, 'telephone' => $telephone]);
         $count = $req->rowCount();
           }
-          else{
+
+      elseif ($types == 'nonBoursier') {
             $adresse =$_POST['adresse'];
              $numchambre ='neant';
              $montant =0;

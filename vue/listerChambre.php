@@ -34,13 +34,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
         $(document).ready(function(e){
-            
+
             $('.delBtn').click(function (e)  {
-               // alert ("coool");
+
         e.preventDefault();
         var tr = $(this).closest('tr');
         del_id = $(this).attr('id');
-        alert (del_id);
+
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
