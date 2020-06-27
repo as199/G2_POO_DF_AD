@@ -172,13 +172,12 @@ $tab = $_SESSION['tab'];
                             })
 
                             $("#form-inscription")[0].reset();
+
                         }
 
 
                     }
                 });
-            } else {
-                alert('Veuillez Saisir tous les champs!')
             }
 
         });

@@ -28,7 +28,7 @@ class Routeur
   }
   public function getRoute(){
     $elements = explode('/',$this->url);
-    return $elements[0];
+    return $elements[0]; // on recper l'element 0
   }
   public function getParams(){
     $elements = explode('/', $this->url);
@@ -45,7 +45,7 @@ class Routeur
   }
   public function renderController()
   {
-    //$url = $this->url;
+
     $route =$this->getRoute();
     $params =$this->getParams();
 

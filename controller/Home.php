@@ -1,6 +1,6 @@
 <?php
 
-
+require_once('./classes/vue.php');
 class Home{
 
     public function showHome($params){
@@ -62,12 +62,9 @@ class Home{
 
 
     }
-    public function showeditChambre($params){
-       extract($params);
-       $_SESSION['id']=$id;
-        include(VUE.'modifierChambre.php');
-     }
+
       public function showvalidereditChambre(){
+        //var_dump($_POST);exit;
         $manager = new Manager();
       $chambres = $manager->editChambre($_POST);
 

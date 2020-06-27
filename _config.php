@@ -13,16 +13,16 @@ public static function start(){
   $root = $_SERVER['DOCUMENT_ROOT'];
   $host = $_SERVER['HTTP_HOST'];
 
-  define('HOST','http://'.$host.'/mvc1/');
-  define('ROOT',$root.'/mvc1');
+  define('HOST','./');
+  define('ROOT','./');
 
  // echo HOST;exit;
   define('CONTROLLER',ROOT.'/controller/');
-  define('MODEL',ROOT.'/model/');
-  define('VUE',ROOT.'/vue/');
-  define('CLASSES',ROOT.'/classes/');
+  define('MODEL',ROOT.'model/');
+  define('VUE',ROOT.'vue/');
+  define('CLASSES',ROOT.'classes/');
 
-  define('ASSETS',HOST.'/asset/');
+  define('ASSETS',HOST.'asset/');
 }
 
 public static function autoload($class)

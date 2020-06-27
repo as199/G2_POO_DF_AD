@@ -1,4 +1,5 @@
 <?php
+include_once('./classes/routeur.php');
 include '_config.php';
 define("BASE_URL","http://localhost/mvc1");
 // on charge maintenant myautoload

@@ -1,5 +1,5 @@
 <?php
- // var_dump($_SESSION['tab']);
+// var_dump($_SESSION['tab']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,31 +11,34 @@
   <meta name="author" content="">
   <title>Sunu site</title>
   <!-- Bootstrap core CSS -->
-  
+
   <!-- google icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
   <!-- Custom styles for this template -->
-  <link href="<?php echo ASSETS ;?>css/styles.css" rel="stylesheet">
-  <link href="<?php echo ASSETS ;?>css/simple-sidebar.css" rel="stylesheet">
+  <link href="<?php echo ASSETS; ?>css/styles.css" rel="stylesheet">
+  <link href="<?php echo ASSETS; ?>css/simple-sidebar.css" rel="stylesheet">
 
   <style type="text/css">
-    .sticky{
+    .sticky {
       position: fixed;
       top: 0;
       width: 100%;
     }
+
     .sticky+.content {
       padding-top: 102px;
     }
-    .font{
-   font-size: 20px;
- }
+
+    .font {
+      font-size: 20px;
+    }
   </style>
 
 </head>
-<body style="font-size: 25px;">
+
+<body style="font-size: 25px;" id="bog">
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-info border-right" id="sidebar-wrapper">
@@ -49,7 +52,7 @@
 
         <input type="hidden" name="logout" value="logout" id="logout">
       </div>
-      
+
     </div>
 
     <!-- Page Content -->
@@ -57,12 +60,12 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
         <button class="btn btn-primary" id="menu-toggle">Menu</button>
       </nav>
-      <div class="container-fluid" id="contenu"style="overflow: scroll;height: 550px;">
+      <div class="container-fluid" id="contenu" style="overflow: scroll;height: 550px;">
         <?php
 
-        if(!empty($content_for_layout)){
-            echo  $content_for_layout ;
-          }
+        if (!empty($content_for_layout)) {
+          echo  $content_for_layout;
+        }
 
 
         ?>
@@ -80,10 +83,33 @@
 
 </html>
 <script type="text/javascript">
-  $(document).ready(function () {
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+  $(document).ready(function() {
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    $("#menu a").click(function() {
+      page = $(this).attr("href");
+      $.ajax({
+        url:  page,
+        cache: false,
+        success: function(html) {
+          afficher(html);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert("textStatus");
+        }
+      })
+      return false;
     });
   });
+
+  function afficher(data) {
+    $('#bog').slideUp(500, function() {
+      $("#bog").empty();
+      $("#bog").append(data);
+      $('#bog').slideDown(1000);
+    })
+
+  }
 </script>
