@@ -1,7 +1,7 @@
 <?php
 include_once('./classes/routeur.php');
 include '_config.php';
-define("BASE_URL","http://localhost/mvc1");
+define("BASE_URL","http://localhost:8000/Gestion_Chambre");
 // on charge maintenant myautoload
 Myautoload::start();
 if(isset($_GET['r'])){
